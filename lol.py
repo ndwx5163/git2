@@ -6,8 +6,10 @@ import pymysql
 import re
 
 
+# create database db_scrapy charset="utf8mb4";
+# use db_scrapy;
 # create table t_role(id int primary key auto_increment,name varchar(255));
-# create table t_user(id int primary key auto_increment,name varchar(255),role_id int not null);
+# create table t_user(id int primary key auto_increment,name varchar(255) unique,role_id int not null);
 # alter table t_user add foreign key(role_id) references t_role(id);
 
 class LOL:
@@ -61,7 +63,6 @@ class LOL:
             except pymysql.err.IntegrityError:
                 print("{}，该英雄已经存在了...".format(i[1]))
                 self.conn.rollback()
-                continue
             else:
                 self.conn.commit()
                 print("{}，插入成功...".format(i[1]))

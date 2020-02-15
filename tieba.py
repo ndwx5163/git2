@@ -55,7 +55,7 @@ class TB:
 
     def main(self):
         self.render_html()
-        self.parse(self.client.page_source)
+        self.c.insert_many(self.parse(self.client.page_source))
         for i in range(9):
             print(10 * '{}'.format(i + 2))
             self.render_next()
